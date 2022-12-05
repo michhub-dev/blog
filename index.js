@@ -11,7 +11,7 @@
             `
         }
         
-        document.getElementById("articles").innHTML = html
+        document.getElementById("articles").innerHTML = html
     }
 
     fetch("https://apis.scrimba.com/jsonplaceholder/posts")
@@ -27,14 +27,16 @@ document.getElementById('new-blog').addEventListener('submit', function(e){
     const title = document.getElementById('blog-title').value
     const body = document.getElementById('blog-body').value
 
+    const data = {
+        title: title,
+        body: body
+    }
+
     fetch("https://apis.scrimba.com/jsonplaceholder/posts", {
     method: 'POST',
-    body: JSON.stringify({
-       title: title,
-       constent: body
-    }),
+    body: JSON.stringify(data),
     headers: {
-        'content-type': 'application/json'
+        'Content-Type': 'application/json'
     }
 })
 .then(res => res.json())
