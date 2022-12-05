@@ -1,6 +1,6 @@
 
    
-   const blogArray = []
+   let blogArray = []
 
     function blogArry() {
         let html = ''
@@ -13,6 +13,14 @@
         
         document.getElementById("articles").innHTML = html
     }
+
+    fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+       .then(res => res.json())
+       .then(data => {
+          console.log(data, "before submit")
+        blogArray = data.slice(0, 5)
+        blogArry()
+       })
 
 document.getElementById('new-blog').addEventListener('submit', function(e){
     e.preventDefault()
@@ -31,10 +39,9 @@ document.getElementById('new-blog').addEventListener('submit', function(e){
 })
 .then(res => res.json())
 .then(data => {
- 
+    console.log(data, 'after submit')
     blogArray.unshift(data)
     blogArry()
 
-    // document.getElementById("articles").innHTML = data.slice(0,5)
 })
 })
